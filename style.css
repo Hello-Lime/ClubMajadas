@@ -94,3 +94,16 @@ h6 {
 	  background-repeat: no-repeat;
 	  background-position: 50% 50%;
   }
+
+  .redes{
+  	padding: 5px;
+  	font-size: 30px;
+  }
+
+  .w-100{
+  	max-width: 100%!important;
+  }
+
+  .txt-form{
+  	border-radius: 10px;
+  }

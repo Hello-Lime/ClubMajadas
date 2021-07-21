@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+  <meta charset="UTF-8">
+  <title>Club Majadas</title>
+  <link rel="stylesheet" href="./style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div class="w-100 ">
+  <div class="container py-5">
+    <div class="row">
+
+        <div class="col-lg-6 col-md-6">
+
+          <div class="container">
+            <div class="col-12">
+
+              <h2 class="text-center py-5 text-white">Clases de Baile de Salsa y Bachata</h2>
+
+
+              <div id="form" >
+
+                <div class="textarea ">
+                  <textarea id="nombre" class="txt-form w-100 py-2" placeholder="Ingresa tu Nombre"></textarea>
+                </div>
+                <br>
+                <div class="textarea">
+                  <textarea id="tel" class="txt-form w-100 py-2 " placeholder="Ingresa tu Teléfono"></textarea>
+                </div>
+                <br>
+                <div class="textarea">
+                  <textarea id="mem" class="txt-form w-100 py-2" placeholder="Ingresa tu número Membresía"></textarea>
+                </div>
+                <br>
+
+                <select id="horario" class="txt-form w-100 py-2" placeholder="Selecciona un Horario" required>
+                  <option >A.M</option>
+                  <option >P.M</option>
+                </select> 
+
+                <br>
+                <br>
+                
+                <form id="form" target="_self" onsubmit="return postToGoogle();" action="" autocomplete="off" > 
+
+                  <button id="send" class="txt-form py-2 w-100" type="submit" class="common_btn">Enviar</button> 
+
+                </form>
+
+              </div>
+
+              <h3 id="success-msg" style="text-align: center !important; margin-top:190px !important; display:none; color:#fff"> Se ha enviado tu solicitud!</h3>  
+            </div>
+            </div>
+          </div>
+
+          
+
+
+        <div class="col-lg-6 col-md-6">
+          <img src="Kick.jpeg" class="w-100">  
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+<script>
+function postToGoogle() {
+
+        var field1 = $("#nombre").val();
+        var field2 = $("#tel").val();
+        var field3 = $("#mem").val();
+        var field4 = "Baile Salsa y Bachata";
+        var field5 = $("#horario option:selected").text();
+        
+        if(field1 == ""){
+          alert('Porfavor ingresa tu Nombre');
+          document.getElementById("nombre").focus();
+          return false;
+        }
+        if(field2 == "" || field2.length > 8 || field2.length < 8){
+          alert('Porfavor ingresa un número válido');
+          document.getElementById("tel").focus();
+          return false;
+        }
+        if(field3 == ""){
+          alert('Porfavor ingresa tu Membresía');
+          document.getElementById("mem").focus();
+          return false;
+        }
+        
+        if(field5 == ""){
+          alert('Porfavor escoge un horario');
+          document.getElementById("horario").focus();
+          return false;
+        }
+
+
+
+        
+  
+        $.ajax({
+              url: "https://docs.google.com/forms/d/e/1FAIpQLSfmAc32I2fWa4m_8Qu3FzpLP-rntrWGIU9bQcA88rfG6cW7Ug/formResponse?",
+              data: {"entry.2085647307": field1, "entry.744219431": field2, "entry.1499593862": field3, "entry.1778365964": field4, "entry.2049907009": field5},
+              type: "POST",
+              dataType: "xml",
+          success: function(d)
+          {
+          },
+          error: function(x, y, z)
+            {
+
+              $('#success-msg').show();
+              $('#form').hide();
+              
+            }
+        });
+        return false;
+        }
+</script>
+
+</body>
+</html>
