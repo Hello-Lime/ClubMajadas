@@ -107,6 +107,23 @@ h6 {
 
   .txt-form{
   	border-radius: 10px;
+  	background-color: rgb(0, 0, 0,0)!important;
+  	border-color: #fff!important;
   }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1; /* Firefox */
+}
 
+textarea:focus, input:focus, input[type]:focus {
+    outline: 0 none;
+}
+
+.enviar{
+	background-color: #fff!important;
+}
+
+.text-black{
+	color: #262a2e!important;
+}
